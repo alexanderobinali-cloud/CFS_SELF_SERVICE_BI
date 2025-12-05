@@ -83,7 +83,7 @@ inject_floating_button_css(FLOATING_BUTTON_KEY)
 def login_screen():
     st.header("This app is private.")
     st.subheader("Please log in.")
-    st.write("Current user object:", st.user)
+    # st.write("Current user object:", st.user)
     st.button("Log in with Google", on_click=st.login)
 # --- Page Configuration ---
 st.set_page_config(
