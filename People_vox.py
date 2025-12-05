@@ -83,6 +83,7 @@ inject_floating_button_css(FLOATING_BUTTON_KEY)
 def login_screen():
     st.header("This app is private.")
     st.subheader("Please log in.")
+    st.write("Current user object:", st.user)
     st.button("Log in with Google", on_click=st.login)
 # --- Page Configuration ---
 st.set_page_config(
@@ -174,6 +175,7 @@ if 'error' not in st.session_state:
 
 
 if not st.user.is_logged_in:
+
     login_screen()
 elif '@classicfootballshirts.co.uk' not in st.user.email:
     st.error("Access denied. Please log in with your @classicfootballshirts.co.uk account.", icon="🚨")
