@@ -214,7 +214,7 @@ with st.form(key="gift_card_query_form"):
         "Describe the dataset you want to query:",
         value=st.session_state.prompt,
         height=100,
-        key="prompt_input"
+        key="prompt_input_gift_card"
     )
     submit_query = st.form_submit_button("✨ Generate Query", use_container_width=True)
 
