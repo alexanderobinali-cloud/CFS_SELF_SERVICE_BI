@@ -175,7 +175,6 @@ if 'error' not in st.session_state:
 
 
 if not st.user.is_logged_in:
-
     login_screen()
 elif '@classicfootballshirts.co.uk' not in st.user.email:
     st.error("Access denied. Please log in with your @classicfootballshirts.co.uk account.", icon="🚨")
@@ -278,7 +277,7 @@ if st.session_state.dataframe is not None:
     st.download_button(
         label="📥 Download Full Data as CSV",
         data=csv,
-        file_name=f"ai-generated-data-{pd.Timestamp.now().strftime('%Y%m%d')}.csv",
+        file_name=f"people-vox_data-{pd.Timestamp.now().strftime('%Y%m%d')}.csv",
         mime="text/csv",
         use_container_width=True,
     )

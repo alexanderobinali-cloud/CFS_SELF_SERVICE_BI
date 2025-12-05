@@ -209,7 +209,7 @@ st.markdown(
 
 # st.write("### Query and modify the month end report using natural language")
 # Step 1: Generate Query
-with st.form(key="query_form"):
+with st.form(key="gift_card_query_form"):
     prompt = st.text_area(
         "Describe the dataset you want to query:",
         value=st.session_state.prompt,
@@ -273,7 +273,7 @@ if st.session_state.dataframe is not None:
     st.download_button(
         label="📥 Download Full Data as CSV",
         data=csv,
-        file_name=f"ai-generated-data-{pd.Timestamp.now().strftime('%Y%m%d')}.csv",
+        file_name=f"gift-card-report-data-{pd.Timestamp.now().strftime('%Y%m%d')}.csv",
         mime="text/csv",
         use_container_width=True,
     )
