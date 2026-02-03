@@ -1,2 +1,3 @@
 # Ignore the Streamlit secrets file (Crucial for Public Repos)
 .streamlit/secrets.toml
+.venv
