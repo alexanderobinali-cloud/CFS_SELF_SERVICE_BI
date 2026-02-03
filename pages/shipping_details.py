@@ -8,10 +8,14 @@ from google.oauth2 import service_account
 
 from People_vox import login_screen
 
-month_end_query= """SELECT d.item_weight, d.item_code,d.salesorder_number,d.site_reference, d.carrier, d.service, d.destination_country, d.salesorder_number , s.order_date FROM `classic-football-shirts.hevo_dataset_classic_football_shirts_fNpk.pvx_despatch_summary` as d  left join `classic-football-shirts.reporting.sales_orders` as s on d.salesorder_number = s.order_no
-WHERE
-    s.order_date >= '2026-01-01' 
-    AND s.order_date < '2026-01-31''-- Replace with specific date or range
+month_end_query= """  with raw as(SELECT row_number() over (partition by order_no) as rn, site_name, shipping_description, shipping_country, shipping_courier, SUM(d.item_weight) over (partition by d.salesorder_number) as total_order_weight FROM `classic-football-shirts.reporting.vw_sales_veezoo_test` 
+left join `classic-football-shirts.hevo_dataset_classic_football_shirts_fNpk.pvx_despatch_summary` as d on d.salesorder_number = order_no
+where order_no is not null 
+and site_name in ( 'Website - UK', 'Website - US', 'Website - Europe')
+ and order_date >= '2026-01-01' 
+ AND order_date < '2026-01-31'
+ )
+select * except(rn) from raw where rn=1
 """
 @st.cache_resource
 def get_bigquery_client():
@@ -134,7 +138,7 @@ if 'dataframe' not in st.session_state:
 if 'error' not in st.session_state:
     st.session_state.error = None
 
-st.session_state.prompt = "Run the depatch summary dataset query for last month"
+st.session_state.prompt = "Run the despatch summary dataset query for last month"
 
 # --- UI Layout ---
 
