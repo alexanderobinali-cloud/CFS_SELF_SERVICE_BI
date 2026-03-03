@@ -104,9 +104,9 @@ This includes, but is not limited to, the following keywords and commands:
             }
         )
         sql_query = response.text.strip()
-        if not sql_query.lower().startswith('select'):
-            st.session_state.error = "Generated text does not appear to be a valid SQL query. Please try again."
-            return None
+        # if not sql_query.lower().startswith('select'):
+        #     st.session_state.error = "Generated text does not appear to be a valid SQL query. Please try again."
+        #     return None
         return sql_query
     except Exception as e:
         st.session_state.error = f"Failed to generate SQL query: {e}"
