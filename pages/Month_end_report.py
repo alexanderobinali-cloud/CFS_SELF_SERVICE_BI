@@ -295,7 +295,9 @@ SELECT
   b2c_pc_code
 FROM base
 WHERE rn = 1
-ORDER BY order_date DESC, order_no;"""
+AND so.order_date >= DATE_TRUNC(DATE_SUB(CURRENT_DATE(), INTERVAL 1 MONTH), MONTH)
+AND so.order_date < DATE_TRUNC(CURRENT_DATE(), MONTH)
+ORDER BY order_date DESC;"""
 
 # """
 # SELECT
